@@ -40,6 +40,9 @@ function! LLMEditRun(user_prompt) abort
     return
   endif
 
+  " Save any unsaved changes to ensure the LLM sees the latest version
+  silent write
+
   " Create tmp file with extension preserved (e.g. file.llm-tmp.py)
   let l:tmp_file = substitute(l:orig_file, '\(\.[^.]*\)$', '.llm-tmp\1', '')
 
@@ -87,9 +90,6 @@ PROMPT
         \ . ' | llm ' . l:model_flag
         \ . '-s ' . shellescape(l:prompt)
         \ . ' | tee ' . shellescape(l:tmp_file)
-
-  " Save current file before editing
-  write
 
   " Pre-create and open the temp file in the current buffer to avoid W13 warning and allow live watching
   call writefile([], l:tmp_file)
