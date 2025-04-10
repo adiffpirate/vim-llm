@@ -88,6 +88,9 @@ PROMPT
         \ . '-s ' . shellescape(l:prompt)
         \ . ' | tee ' . shellescape(l:tmp_file)
 
+  " Save current file before editing
+  write
+
   " Pre-create and open the temp file in the current buffer to avoid W13 warning and allow live watching
   call writefile([], l:tmp_file)
   execute 'edit! ' . fnameescape(l:tmp_file)
