@@ -1,8 +1,8 @@
 # vim-llm
 
 **vim-llm** is a Vim plugin that leverages an external LLM CLI tool to transform your file content using AI.
-It sends the entire buffer to the LLM, cleans up code fences and whitespace issues from the generated output,
-and then replaces your original file with the polished result.
+It sends the entire file or a snippet to the LLM, cleans up code fences and whitespace issues from the generated output,
+and then replaces your original content with the polished result.
 
 ## Features
 
@@ -11,6 +11,7 @@ and then replaces your original file with the polished result.
 - **Preview via Temp File:** Writes output to a temporary file while preserving the original file's extension (e.g. `file.llm-tmp.py`) for syntax highlighting.
 - **Seamless Buffer Switching:** Opens the temporary file in the current buffer for live monitoring and automatically switches back to your original file when done.
 - **Output Cleanup:** Automatically removes surrounding code fences, trims lines that contain only spaces (replacing them with empty strings), and cleans up any extra blank lines.
+- **Snippet Editing:** On visual mode only the selected lines will be edited.
 - **Easy to Use:** Just invoke the command with a prompt. For example:
   ```vim
   :LLMEdit 'add docstrings'
